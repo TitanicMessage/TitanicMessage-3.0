@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TitanicMessage - Community Guidelines</title>
+    <link rel="icon" href="https://titanicsearch.neocities.org/titanicsearch.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #36393f; /* Dark background similar to the chat */
+            color: #ffffff; /* White text for better contrast */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #2f3136; /* Dark header background */
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #202225;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            margin-right: 0.5rem;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .logout-button {
+            background-color: #ed4245; /* Red logout button */
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #d73538;
+        }
+
+        /* Content Styles */
+        .content {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Section Styles */
+        .section {
+            background-color: #40444b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #7289da; /* Header color */
+        }
+
+        .section p, .section ul {
+            font-size: 1rem;
+            color: #b9bbbe;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2f3136;
+            color: #b9bbbe;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #7289da;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="https://titanicsearch.neocities.org/titanicsearch.png" alt="Logo" class="logo">
+            <h2>TitanicMessage - Community Guidelines</h2>
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    <div class="content">
+        <div class="section">
+            <h3>Welcome to TitanicMessage!</h3>
+            <p>We’re excited to have you join our community. To make sure everyone enjoys their time here, we’ve outlined a set of guidelines that we kindly ask you to follow. Our goal is to foster a safe, respectful, and fun environment for all users. If you're familiar with Scratch's community, you'll notice some similarities in how we like to operate!</p>
+        </div>
+
+        <div class="section">
+            <h3>Be Respectful and Kind</h3>
+            <p>TitanicMessage is a place where people come together to share ideas, chat, and have fun. Always be kind, and treat others with respect. Harassment, threats, and hate speech will not be tolerated. This includes:</p>
+            <ul>
+                <li>Avoiding offensive language, slurs, or bullying</li>
+                <li>Not sharing explicit content</li>
+                <li>Respecting different opinions, cultures, and perspectives</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Keep it Safe for Everyone</h3>
+            <p>To protect our users, we ensure TitanicMessage is a secure space for all. Avoid sharing personal information like your full name, home address, or other sensitive details. We also do not tolerate:</p>
+            <ul>
+                <li>Sharing passwords or attempting to hack others’ accounts</li>
+                <li>Promoting scams, spam, or malicious links</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Stay On Topic</h3>
+            <p>We encourage fun conversations, but please make sure your messages stay on topic. Irrelevant or spammy content disrupts the chat for others. Please avoid:</p>
+            <ul>
+                <li>Repeatedly posting the same messages (spamming)</li>
+                <li>Flooding chats with unnecessary links or ads</li>
+                <li>Derailing conversations from the original topic</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Follow Scratch-Inspired Guidelines</h3>
+            <p>Just like Scratch, we value creativity and a collaborative spirit. Here’s how you can contribute positively:</p>
+            <ul>
+                <li>Share constructive feedback and encourage others</li>
+                <li>Avoid plagiarism by respecting others’ content</li>
+                <li>Report anything that violates our guidelines instead of engaging with it</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Violations and Reporting</h3>
+            <p>If someone breaks the rules, we may remove their content, warn them, or suspend their account. You can help keep TitanicMessage safe by reporting inappropriate behavior or messages through the chat’s report feature.</p>
+        </div>
+
+        <div class="section">
+            <h3>Thank You for Being Awesome!</h3>
+            <p>By following these guidelines, you help us create a positive, inclusive community. We’re glad to have you here!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 TitanicMessage. All rights reserved. | <a href="/chat">Home</a> | <a href="/updates">Updates</a> | <a href="/community-guidelines">Community Guidelines</a> | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-use">Terms of use</a> | <a href="/download">Download</a> | <a href="/blog">Blog</a> | <a href="/join">Join</a> | <a href="/countdown">Countdown</a></p>
+    </footer>
+
+    <script>
+        function logout() {
+            fetch('/logout', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Logged out successfully') {
+                    window.location.href = '/'; // Redirect to the sign-in page
+                } else {
+                    console.error('Failed to log out:', data.message);
+                }
+            })
+            .catch(error => console.error('Error logging out:', error));
+        }
+    </script>
+</body>
+</html>
