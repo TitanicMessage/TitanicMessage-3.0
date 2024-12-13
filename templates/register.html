@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/background.png');
+        	background-repeat:no-repeat;
+        	background-size:cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+    
+    	@media (min-width:768px) {
+        	.container {
+        		width:40%;
+            	height:80vh;
+            	border-radius:8px;
+        	}
+    	}
+    
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    	.verify {
+    		font-size:1.5em;
+        	font-weight:bold;
+    	}
+    
+    	input {
+    		background-color: rgba(0, 0, 0, 0);
+        	border:0;
+        	outline: 0;
+        	height:40px;
+        	width:80%;
+        	font-size:15px;
+        	margin:10px;
+        	border-left: 5px solid rgba(0, 0, 0, 0.5);
+    		padding-left: 15px;
+		}
+    
+    	.input-container {
+    		display:inline-block;
+        	position:relative;
+    	}
+    
+    	.input-container:after {
+    		display:block;
+        	content:'';
+        	border-bottom:3px solid black;
+        	transform: scaleX(0);
+        	transition: transform 250ms ease-in-out;
+        	transform-origin:  0% 50%;
+    	}
+    
+    	.input-container:hover:after,.input-container:focus-within:after {transform:scaleX(1);}
+    
+    	button {
+    		width:200px;
+        	text-align:center;
+        	height:40px;
+        	background-color:rgba(0, 0, 0, 0);
+        	font-size:20px;
+        	border:0;
+    	}
+    
+    	button:after {
+  			display:block;
+  			content: '';
+  			border-bottom: solid 3px #007bff;  
+  			transform: scaleX(0);  
+  			transition: transform 250ms ease-in-out;
+		}
+    	
+    	button:hover:after { transform: scaleX(1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>Register</div>
+        </div>
+        <div class="content">
+        	<div class="input-container"><input type="text" id="username" placeholder="Enter your Scratch username here."></div>
+    		<div class="input-container"><input type="password" id="password" placeholder="Create a password."></div>
+        	<div class="input-container"><input type="password" id="confirmpwd" placeholder="Confirm your password"></div>
+        
+	        <button id="generator" onclick="auth()">Generate AuthToken</button>
+        	<div id="verification">
+        	Go to this project:
+        	<br>
+        	<a href="https://scratch.mit.edu/projects/1097696413/">https://scratch.mit.edu/projects/1097696413/</a>
+        	<br>
+        	Make sure to sign in to your account while viewing the project. Then, enter this code when prompted:
+        	<br><div class="verify" id="verify"></div>
+            <br>
+            <button onclick="verify()">Done, continue.</button>
+        	</div>
+        <div id="loader">Fetching Authentication Token...</div>
+    	</div>
+    </div>
+	<script>
+    	document.getElementById('loader').style.display = "none";
+    	document.getElementById('verification').style.display = "none";
+    
+    	function checkpw(password) {
+        	const criteria = [
+            	(password) => password.length >= 6,
+            	(password) => password.length <= 20,
+            	(password) => /^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/.test(password)
+            ];
+        	return criteria.every(test => test(password));
+        }
+    
+    	async function auth() {
+        	username = document.getElementById('username').value;
+        	password = document.getElementById('password').value;
+        	confirmpwd = document.getElementById('confirmpwd').value;
+        	
+        	if (confirmpwd != password) {
+            	alert("Confirmed password does not match.");
+            } else if (!checkpw(password)) {
+            	alert("Password not allowed. It's either too short, too long, or contains an invalid character.");
+            } else if (username === "") {
+            	alert("Please enter a username.");
+            } else {
+              registerusr(username, password);
+            }
+        }
+    
+    
+    	async function registerusr(username, password) {
+        	try {
+            	const response = await fetch('/endpoint/create_account',{
+                	method: 'POST',
+                	headers: {
+                    	'Content-Type': 'application/json'
+                    },
+                	body: JSON.stringify({ username: username, password: password })
+                });
+            	
+            	const data = await response.json();
+            
+            	if (response.ok) {
+                	if (data.message === 'Username already exists') {
+                    	alert('Username already in use. Please choose another username.');
+                    } else if (data.message === 'User registered successfully') {
+                    	alert('You have been registered successfully. Taking you to login...');
+                    	window.location.href = `/login`;
+                    } else {
+                    	alert(data.message);
+                    }
+                } else {
+                	alert('Error: ', data.error);
+                }
+            } catch (error) {
+            	alert('Error: ', error);
+            }
+        }
+	</script>
+</body>
+</html>
