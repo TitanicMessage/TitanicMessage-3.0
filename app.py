@@ -22,6 +22,8 @@ def create_account(username, password):
 	salt = bcrypt.gensalt()
 	hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
 	accounts = load_accounts()
+	if username in accounts:
+		return "Username already exists"
 	accounts[username] = {}
 	accounts[username]['password_hashed'] = hashed
 	return write_accounts(accounts)
