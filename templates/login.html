@@ -128,12 +128,12 @@
             	body: JSON.stringify({ username, password })
             });
         	const data = await response.json();
-        	if (response.status === 200) {
+        	if (data.message) {
             	document.cookie = `username=${username}; path=/`;
               document.cookie = `password=${password}; path=/`;
             	checkLogin();
             } else {
-            	alert(data.message);
+            	alert('Provided username/password does not match.');
             }
         }
     
