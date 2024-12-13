@@ -114,24 +114,10 @@
         	<div class="input-container"><input type="text" id="username" placeholder="Enter your Scratch username here."></div>
     		<div class="input-container"><input type="password" id="password" placeholder="Create a password."></div>
         	<div class="input-container"><input type="password" id="confirmpwd" placeholder="Confirm your password"></div>
-        
-	        <button id="generator" onclick="auth()">Generate AuthToken</button>
-        	<div id="verification">
-        	Go to this project:
-        	<br>
-        	<a href="https://scratch.mit.edu/projects/1097696413/">https://scratch.mit.edu/projects/1097696413/</a>
-        	<br>
-        	Make sure to sign in to your account while viewing the project. Then, enter this code when prompted:
-        	<br><div class="verify" id="verify"></div>
-            <br>
-            <button onclick="verify()">Done, continue.</button>
-        	</div>
-        <div id="loader">Fetching Authentication Token...</div>
+		<br><br><button onclick="auth()">Register</button>
     	</div>
     </div>
 	<script>
-    	document.getElementById('loader').style.display = "none";
-    	document.getElementById('verification').style.display = "none";
     
     	function checkpw(password) {
         	const criteria = [
