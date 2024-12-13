@@ -112,14 +112,12 @@
         	<div class="input-container"><input type="text" id="username" placeholder="Username"></div>
         	<div class="input-container"><input type="password" id="password" placeholder="Password"></div>
         	<br><br>
-	        <button onclick="login()">LOGIN</button><br><br><a href="/register"> No account? Register here.</a>
+	        <button onclick="login(true, document.getElementById('username').value, document.getElementById('password').value)">LOGIN</button><br><br><a href="/register"> No account? Register here.</a>
     	</div>
     </div>
 
     <script>
-        async function login() {
-        	const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        async function login(button, username, password) {
         	const response = await fetch('/endpoint/login', {
             	method: 'POST',
             	headers: {
@@ -130,10 +128,15 @@
         	const data = await response.json();
         	if (data.message) {
             	document.cookie = `username=${username}; path=/`;
-              document.cookie = `password=${password}; path=/`;
-            	checkLogin();
+                document.cookie = `password=${password}; path=/`;
+		if (button) {
+            		checkLogin();
+		} else {
+			return true;
+		}
             } else {
             	alert('Provided username/password does not match.');
+		return false;
             }
         }
     
@@ -151,8 +154,8 @@
     	function checkLogin() {
         	const username = getCookie('username');
         	const password = getCookie('password');
-        	if (username && password) {
-            	window.location.href = `/dashboard`;
+        	if (login(false, username, password)) {
+            		window.location.href = `/dashboard`;
             }
         }
    
