@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, send_from_directory, Response
+from flask import Flask, render_template, jsonify, request, send_from_directory, Response, redirect
 import requests
 import bcrypt
 import json
@@ -7,6 +7,18 @@ import json
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False # Making sure 'site/page' is equal to 'site/page/'
+
+@app.route('/')
+def index():
+	return redirect('/login') # We can add an actual homepage later
+
+@app.route('/login')
+def login():
+	return render_template('login.html')
+
+@app.route('/register')
+def register():
+	return render_template('register.html')
 
 def load_accounts():
 	with open('accounts.json', 'r') as f:
