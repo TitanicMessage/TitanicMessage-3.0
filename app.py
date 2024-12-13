@@ -12,6 +12,14 @@ app.url_map.strict_slashes = False # Making sure 'site/page' is equal to 'site/p
 def index():
 	return redirect('/login') # We can add an actual homepage later
 
+@app.route('/dashboard')
+def dashboard():
+	return redirect('/in_progress') # We'll work on this once the login system's running smoothly.
+
+@app.route('/in_progress')
+def in_progress():
+	return "<h1>Site in Progress</h1><p>This part of the site is still under construction. Check back soon!</p>"
+
 @app.route('/login')
 def login():
 	return render_template('login.html')
