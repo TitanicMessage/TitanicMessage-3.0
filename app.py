@@ -35,7 +35,7 @@ def create_account(username, password):
 	hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
 	accounts = load_accounts()
 	if username in accounts:
-		return "Username already exists"
+		return jsonify({'message': 'Username already exists'})
 	accounts[username] = {}
 	accounts[username]['password_hashed'] = hashed
 	return write_accounts(accounts)
@@ -43,8 +43,8 @@ def create_account(username, password):
 def check_login(username, password):
 	accounts = load_accounts()
 	if not username in accounts:
-		return "Account not found"
-	return bcrypt.checkpw(password.encode('utf-8'), accounts[username]['password'].encode('utf-8'))
+		return jsonify({'message': 'Account not found'})
+	return jsonify({'message': bcrypt.checkpw(password.encode('utf-8'), accounts[username]['password'].encode('utf-8')) })
 
 @app.route('/endpoint/create_account', methods=['POST'])
 def create_account():
