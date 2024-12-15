@@ -117,7 +117,7 @@
     </div>
 
     <script>
-        async function login(button, username, password) {
+        async function login() {
 		const username = document.getElementById('username').value
 		const password = document.getElementById('password').value
         	const response = await fetch('/endpoint/login', {
