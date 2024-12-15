@@ -59,7 +59,7 @@ def create_account():
 	j = request.get_json()
 	username = j['username']
 	password = j['password']
-	return create_account(username, password)
+	return js_create_account(username, password)
 
 @app.route('/endpoint/login', methods=['POST'])
 def verify_login():
