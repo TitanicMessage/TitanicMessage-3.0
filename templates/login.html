@@ -126,7 +126,7 @@
             	body: JSON.stringify({ username, password })
             });
         	const data = await response.json();
-        	if (data.message) {
+        	if (data.message === 'True') {
             	document.cookie = `username=${username}; path=/`;
                 document.cookie = `password=${password}; path=/`;
 		if (button) {
