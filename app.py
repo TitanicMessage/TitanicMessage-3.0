@@ -52,7 +52,7 @@ def check_login(username, password):
 	accounts = load_accounts()
 	if not username in accounts:
 		return jsonify({'message': 'Account not found'})
-	return jsonify({'message': bcrypt.checkpw(password.encode('utf-8'), accounts[username]['password'].encode('utf-8')) })
+	return jsonify({'message': str(bcrypt.checkpw(password.encode('utf-8'), accounts[username]['password'].encode('utf-8'))) })
 
 @app.route('/endpoint/create_account', methods=['POST'])
 def create_account():
