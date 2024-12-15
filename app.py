@@ -38,7 +38,7 @@ def write_accounts(accounts):
 		json.dump(accounts, f, indent=4)
 	return "OK"
 
-def create_account(username, password):
+def js_create_account(username, password):
 	salt = bcrypt.gensalt()
 	hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
 	accounts = load_accounts()
