@@ -4,97 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/TitanicMessage/TitanicMessage-3.0/a82aaf2c9317476aa4afb2fb241ea674d47ce4ac/static/favicon.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-image: url('https://github.com/TitanicMessage/TitanicMessage-3.0/blob/main/static/background.png?raw=true');
-            background-repeat: no-repeat;
-            background-size: cover;
-            color: #ffffff;
-            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('/static/background.png');
+        	background-repeat:no-repeat;
+        	background-size:cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
+            margin: 0;
         }
-
-        .login-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            padding: 2rem;
+        .container {
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
-
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            color: #007bff;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            background-color: rgba(0, 0, 0, 0);
-            color: #333;
-            border: none;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-            font-size: 15px;
-            padding-left: 10px;
-        }
-
-        .login-input:focus {
-            outline: none;
-            border-bottom: 2px solid #007bff;
-        }
-
-        .login-button {
+    
+	    @media (min-width: 768px) {
+        	.container {
+        		width:40%;
+            	height:80vh;
+            	border-radius:8px;
+        	}
+    	}
+    
+        .header {
             background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 1rem;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .login-button:hover {
-            background-color: #0056b3;
+        .content {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+        	flex-direction:column;
+            gap: 10px;
+        	align-items:center;
         }
-
-        .login-footer {
-            margin-top: 1rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #007bff;
-        }
-
-        .login-footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (min-width: 768px) {
-            .login-container {
-                width: 40%;
-                height: auto;
-                border-radius: 8px;
-            }
-        }
+    
+    	input {
+    		background-color: rgba(0, 0, 0, 0);
+        	border:0;
+        	outline: 0;
+        	height:40px;
+        	width:80%;
+        	font-size:15px;
+        	margin:10px;
+        	border-left: 5px solid rgba(0, 0, 0, 0.5);
+        	padding-left:15px;
+    	}
+    
+	    .input-container {
+    		display:inline-block;
+        	position:relative;
+    	}
+    
+    	.input-container:after {
+    		display:block;
+        	content:'';
+        	border-bottom:3px solid black;
+        	transform: scaleX(0);
+        	transition: transform 250ms ease-in-out;
+        	transform-origin:  0% 50%;
+    	}
+    
+    	.input-container:hover:after,.input-container:focus-within:after {transform:scaleX(1);}
+    
+    	button {
+    		width:200px;
+        	text-align:center;
+        	height:40px;
+        	background-color:rgba(0, 0, 0, 0);
+        	font-size:20px;
+        	border:0;
+    	}
+    
+    	button:after {
+  			display:block;
+  			content: '';
+  			border-bottom: solid 3px #007bff;  
+  			transform: scaleX(0);  
+  			transition: transform 250ms ease-in-out;
+		}
+    	
+    	button:hover:after { transform: scaleX(1); }
     </style>
 </head>
 <body>
