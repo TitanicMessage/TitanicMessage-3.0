@@ -135,9 +135,12 @@
 			return true;
 		}
             } else {
+		if (button) {
             	alert('Provided username/password does not match.');
+		} else {
 		return false;
-            }
+		}
+	}
         }
     
     	function getCookie(name) {
