@@ -3,10 +3,40 @@ import requests
 import bcrypt
 import json
 
+
 # We might not need to use all these imports now, but they'll definitely come in useful in future.
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False # Making sure 'site/page' is equal to 'site/page/'
+
+def load_accounts():
+	with open('accounts.json', 'r') as f:
+		j = json.load(f)
+		return j
+
+def write_accounts(accounts):
+	with open('accounts.json', 'w') as f:
+		json.dump(accounts, f)
+	return "OK"
+
+def js_create_account(username, password):
+	salt = bcrypt.gensalt()
+	hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+	accounts = load_accounts()
+	if username in accounts:
+		return jsonify({'message': 'Username already exists'})
+	accounts[username] = {}
+	accounts[username]['password_hashed'] = hashed
+	write_accounts(accounts)
+	return jsonify({'message': 'Account created successfully'})
+
+def check_login(username, password):
+	accounts = load_accounts()
+	if not username in accounts:
+		return jsonify({'message': 'Account not found'})
+	if bcrypt.checkpw(password.encode('utf-8'), accounts[username]['password_hashed'].encode('utf-8')):
+		return jsonify({'message': 'Login successful'})
+	else:
+		return jsonify({'message': 'Invalid password'})
 
 @app.route('/')
 def index():
@@ -27,36 +57,6 @@ def login():
 @app.route('/register')
 def register():
 	return render_template('register.html')
-
-def load_accounts():
-	with open('accounts.json', 'r') as f:
-		j = json.load(f)
-		return j
-
-def write_accounts(accounts):
-	with open('accounts.json', 'w') as f:
-		json.dump(accounts, f)
-	return "OK"
-
-def js_create_account(username, password):
-	salt = bcrypt.gensalt()
-	hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-	accounts = load_accounts()
-	if username in accounts:
-		return jsonify({'message': 'Username already exists'}), 409
-	accounts[username] = {}
-	accounts[username]['password_hashed'] = hashed
-	write_accounts(accounts)
-	return jsonify({'message': 'Account created successfully'}), 201
-
-def check_login(username, password):
-	accounts = load_accounts()
-	if not username in accounts:
-		return jsonify({'message': 'Account not found'}), 404
-	if bcrypt.checkpw(password.encode('utf-8'), accounts[username]['password_hashed'].encode('utf-8')):
-		return jsonify({'message': 'Login successful'}), 200
-	else:
-		return jsonify({'message': 'Invalid password'}), 401
 
 @app.route('/api/create_account', methods=['GET', 'POST'])
 def create_account():
