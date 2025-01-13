@@ -20,14 +20,6 @@ body {
     flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    .container {
-        width:40%;
-        height:80vh;
-        border-radius:8px;
-    }
-}
-
 .header {
     background-color: rgba(0,0,0,0);
 backdrop-filter:blur(500000px);
