@@ -46,6 +46,10 @@ def index():
 def dashboard():
 	return redirect('/in_progress') # We'll work on this once the login system's running smoothly.
 
+@app.route('/reset_password')
+def reset_password():
+	return redirect('/in_progress')
+
 @app.route('/in_progress')
 def in_progress():
 	return "<h1>Site in Progress</h1><p>This part of the site is still under construction. Check back soon!</p>"
