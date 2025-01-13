@@ -82,17 +82,8 @@ body {
     		width:200px;
         	text-align:center;
         	height:40px;
-        	background-color:rgba(0, 0, 0, 0);
+		border-radius:50%;
+        	background-color:rgb(0, 123, 255);
         	font-size:20px;
         	border:0;
     	}
-    
-    	button:after {
-  			display:block;
-  			content: '';
-  			border-bottom: solid 3px #007bff;  
-  			transform: scaleX(0);  
-  			transition: transform 250ms ease-in-out;
-		}
-    	
-    	button:hover:after { transform: scaleX(1); }
