@@ -25,7 +25,7 @@ def js_create_account(username, password):
 	if username in accounts:
 		return jsonify({'message': 'Username already exists'})
 	accounts[username] = {}
-	accounts[username]['password_hashed'] = hashed
+	accounts[username]['password_hashed'] = hashed.decode('utf-8')
 	write_accounts(accounts)
 	return jsonify({'message': 'Account created successfully'})
 
