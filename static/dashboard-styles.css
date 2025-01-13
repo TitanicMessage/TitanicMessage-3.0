@@ -19,14 +19,16 @@ div {
 }
 
 .top-bar {
-    height:10%;
+    height:6%;
     position:absolute;
     top:0;
 }
 
 .main-content {
+    position:absolute;
+    bottom:0;
     width:70%;
-    height:90%;
+    height:94%;
 }
 .container {
     width: 100%;
