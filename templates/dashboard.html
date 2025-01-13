@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TitanicMessage Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Welcome to TitanicMessage</h1>
-    <p>This part of the site is in progress. Check back soon!</p>
+    <div class="container">
+        <div class="header">
+            <div>Dashboard</div>
+        </div>
+        <div class="content" id='content'>
+        	<p>Dashboard Content should be here!</p>
+    	</div>
+    </div>
+
+    <script>
+        async function getUserData() {
+		const username = document.getElementById('username').value
+		const password = document.getElementById('password').value
+        	const response = await fetch('/api/data', {
+            	method: 'POST',
+            	headers: {
+                	'Content-Type': 'application/json'
+                },
+            	body: JSON.stringify({ username, password })
+            });
+        	const data = await response.json();
+        	/*
+            if (data.message === 'Login successful') {
+            	document.cookie = `username=${username}; path=/`;
+                document.cookie = `password=${password}; path=/`;
+            	window.location.href = `/dashboard`;
+            } else {
+            	alert('Provided username/password does not match.');
+            */
+           // needs to be updated for the new function
+	}
+    
+    	function getCookie(name) {
+        	const nameEQ = name + "=";
+        	const ca = document.cookie.split(';');
+        	for(let i = 0; i < ca.length; i++) {
+            	let c = ca[i];
+            	while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            	if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+        	return null;
+        }
+
+        if (getCookie("username")) {
+            void(0);
+        } else {
+            window.location.href = `/login`
+        }
+    </script>
 </body>
 </html>
