@@ -87,4 +87,9 @@ body {
         	font-size:20px;
         	border:0;
 		color:white;
+			transition: all 0.3s ease;
     	}
+
+		button:hover {
+			transform: scale(1.05);
+		}
