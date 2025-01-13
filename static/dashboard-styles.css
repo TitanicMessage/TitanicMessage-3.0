@@ -3,6 +3,7 @@ body {
     background-image: url('/static/background.png');
     background-repeat:no-repeat;
     background-size:cover;
+    background-color: #fff9;
     display: flex;
     justify-content: center;
     align-items: center;
