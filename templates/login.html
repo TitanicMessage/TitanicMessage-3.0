@@ -150,7 +150,7 @@
                 body: JSON.stringify({ username, password })
             });
             const data = await response.json();
-            if (data.message === 'True') {
+            if (data.message === 'Login successful') {
                 document.cookie = `username=${username}; path=/`;
                 document.cookie = `password=${password}; path=/`;
                 window.location.href = `/dashboard`;
