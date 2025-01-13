@@ -35,11 +35,15 @@ div {
 .user-info {
     position:absolute;
     right:0;
+    height:94%;
+    width:10%
 }
 
 .user-selection-pane {
     position:absolute;
     left:0;
+    height:94%;
+    width:20%
 }
 
 .container {
