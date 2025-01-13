@@ -3,161 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TitanicMessage - Login</title>
+    <title>Login</title>
 	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-image: url('/static/background.png');
-            	background-repeat:no-repeat;
-            	background-size:cover;
-            margin: 0;
+        	background-repeat:no-repeat;
+        	background-size:cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .login-container {
-            border-radius: 8px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-        }
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-        .login-input {
-            width: 93.5%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-        }
-        .login-input:focus {
-            outline: none;
-        }
-        .login-button {
-            padding: 0.75rem;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .login-footer {
-            margin-top: 1rem;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-        .login-footer a {
-            text-decoration: none;
-        }
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-        body.dark-mode {
-            background-color: #36393f;
-            color: #ffffff;
-        }
-        .dark-mode .login-container {
-            background-color: #2f3136;
-        }
-        .dark-mode .login-input {
-            background-color: #40444b;
-            color: #ffffff;
-            border: 1px solid #4f545c;
-        }
-        .dark-mode .login-input:focus {
-            border-color: #5865f2;
-        }
-        .dark-mode .login-button {
-            background-color: #5865f2;
-            color: white;
-            border: none;
-        }
-        .dark-mode .login-button:hover {
-            background-color: #4752c4;
-        }
-        .dark-mode .login-footer a {
-            color: #7289da;
-        }
-        body.light-mode {
-            background-color: #f2f2f2;
-            color: #36393f;
-        }
-        .light-mode .login-container {
-            background-color: #ffffff;
-        }
-        .light-mode .login-input {
-            background-color: #ffffff;
-            color: #36393f;
-            border: 1px solid #cccccc;
-        }
-        .light-mode .login-input:focus {
-            border-color: #007bff;
-        }
-        .light-mode .login-button {
+    
+	    @media (min-width: 768px) {
+        	.container {
+        		width:40%;
+            	height:80vh;
+            	border-radius:8px;
+        	}
+    	}
+    
+        .header {
             background-color: #007bff;
-            color: white;
-            border: none;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .light-mode .login-button:hover {
-            background-color: #0056b3;
+
+        .content {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+        	flex-direction:column;
+            gap: 10px;
+        	align-items:center;
         }
-        .light-mode .login-footer a {
-            color: #007bff;
-        }
+    
+    	input {
+    		background-color: rgba(0, 0, 0, 0);
+        	border:0;
+        	outline: 0;
+        	height:40px;
+        	width:80%;
+        	font-size:15px;
+        	margin:10px;
+        	border-left: 5px solid rgba(0, 0, 0, 0.5);
+        	padding-left:15px;
+    	}
+    
+	    .input-container {
+    		display:inline-block;
+        	position:relative;
+    	}
+    
+    	.input-container:after {
+    		display:block;
+        	content:'';
+        	border-bottom:3px solid black;
+        	transform: scaleX(0);
+        	transition: transform 250ms ease-in-out;
+        	transform-origin:  0% 50%;
+    	}
+    
+    	.input-container:hover:after,.input-container:focus-within:after {transform:scaleX(1);}
+    
+    	button {
+    		width:200px;
+        	text-align:center;
+        	height:40px;
+        	background-color:rgba(0, 0, 0, 0);
+        	font-size:20px;
+        	border:0;
+    	}
+    
+    	button:after {
+  			display:block;
+  			content: '';
+  			border-bottom: solid 3px #007bff;  
+  			transform: scaleX(0);  
+  			transition: transform 250ms ease-in-out;
+		}
+    	
+    	button:hover:after { transform: scaleX(1); }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>TitanicMessage - Login</h2>
-        <form onsubmit="login(event)">
-            <input type="text" id="username" class="login-input" placeholder="Enter your username/email" required>
-            <input type="password" id="password" class="login-input" placeholder="Enter your password" required>
-            <button type="submit" class="login-button">Login</button>
-        </form>
-        <div class="login-footer">
-            <p>Don't have an account? <a href="/register">Register</a></p>
-            <p>Forgot your password? <a href="/reset_password">Reset it</a></p>
+    <div class="container">
+        <div class="header">
+            <div>Login</div>
         </div>
+        <div class="content" id='content'>
+        	<div class="input-container"><input type="text" id="username" placeholder="Username"></div>
+        	<div class="input-container"><input type="password" id="password" placeholder="Password"></div>
+        	<br><br>
+	        <button onclick="login()">LOGIN</button><br><br><a href="/register"> Don't have an account? Register here.</a>
+    	</div>
     </div>
+
     <script>
-        function applyTheme() {
-            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            if (prefersDarkScheme) {
-                document.body.classList.add('dark-mode');
-                document.body.classList.remove('light-mode');
-            } else {
-                document.body.classList.add('light-mode');
-                document.body.classList.remove('dark-mode');
-            }
-        }
-        window.onload = applyTheme;
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', applyTheme);
-        async function login(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+        async function login() {
+		const username = document.getElementById('username').value
+		const password = document.getElementById('password').value
+        	const response = await fetch('/endpoint/login', {
+            	method: 'POST',
+            	headers: {
+                	'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, password })
+            	body: JSON.stringify({ username, password })
             });
-            const data = await response.json();
-            if (data.message === 'Login successful') {
-                document.cookie = `username=${username}; path=/`;
+        	const data = await response.json();
+        	if (data.message === 'True') {
+            	document.cookie = `username=${username}; path=/`;
                 document.cookie = `password=${password}; path=/`;
-                window.location.href = `/dashboard`;
+            	window.location.href = `/dashboard`;
             } else {
-                alert('Provided username/password does not match.');
+            	alert('Provided username/password does not match.');
+	}
+        }
+    
+    	function getCookie(name) {
+        	const nameEQ = name + "=";
+        	const ca = document.cookie.split(';');
+        	for(let i = 0; i < ca.length; i++) {
+            	let c = ca[i];
+            	while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            	if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+        	return null;
+        }
+    
+    	async function checkLogin() {
+        	const username = getCookie('username');
+        	const password = getCookie('password');
+		const response = await fetch('/endpoint/login', {
+            	method: 'POST',
+            	headers: {
+                	'Content-Type': 'application/json'
+                },
+            	body: JSON.stringify({ username, password })
+            });
+        	const data = await response.json();
+        	
+        	if (data.message === 'True') {
+            		window.location.href = `/dashboard`;
             }
         }
+   
+    	checkLogin();
     </script>
 </body>
 </html>
