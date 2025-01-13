@@ -20,6 +20,7 @@ div {
 
 .top-bar {
     height:6%;
+    width:100%
     position:absolute;
     top:0;
 }
@@ -30,6 +31,17 @@ div {
     width:70%;
     height:94%;
 }
+
+.user-info {
+    position:absolute;
+    right:0;
+}
+
+.user-selection-pane {
+    position:absolute;
+    left:0;
+}
+
 .container {
     width: 100%;
     height: 100vh;
