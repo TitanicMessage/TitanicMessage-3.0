@@ -29,7 +29,7 @@ body {
     	}
     
         .header {
-            background-color: rgba(0,123,255,0.1);
+            background-color: rgba(0,0,0,0);
 	    backdrop-filter:blur(500000px);
             color: #000000;
             padding: 10px;
