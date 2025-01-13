@@ -3,7 +3,6 @@ body {
     background-image: url('/static/background.png');
     background-repeat:no-repeat;
     background-size:cover;
-    background-color: #fff9;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +12,8 @@ body {
 
 div {
     outline: black 1px solid;
+    background-color: #fff9;
+    backdrop-filter:blur(5000000px);
 }
 .container {
     width: 100%;
