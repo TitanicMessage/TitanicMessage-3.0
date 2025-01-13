@@ -44,7 +44,7 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-	return redirect('/in_progress') # We'll work on this once the login system's running smoothly.
+	return render_template("dashboard.html")
 
 @app.route('/reset_password')
 def reset_password():
