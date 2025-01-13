@@ -36,14 +36,16 @@ div {
     position:absolute;
     right:0;
     height:94%;
-    width:10%
+    width:10%;
+    bottom:0;
 }
 
 .user-selection-pane {
     position:absolute;
     left:0;
     height:94%;
-    width:20%
+    width:20%;
+    bottom:0;
 }
 
 .container {
