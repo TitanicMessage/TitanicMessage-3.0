@@ -58,14 +58,14 @@ def check_login(username, password):
 	else:
 		return jsonify({'message': 'Invalid password'}), 401
 
-@app.route('/endpoint/create_account', methods=['GET', 'POST'])
+@app.route('/api/create_account', methods=['GET', 'POST'])
 def create_account():
 	j = request.get_json()
 	username = j['username']
 	password = j['password']
 	return js_create_account(username, password)
 
-@app.route('/endpoint/login', methods=['GET', 'POST'])
+@app.route('/api/login', methods=['GET', 'POST'])
 def verify_login():
 	j = request.get_json()
 	username = j['username']
