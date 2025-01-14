@@ -44,6 +44,14 @@ div {outline: black 1px solid;}
     top:0%;
 }
 
+.message {
+    height:fit-content;
+    background:white;
+    width:90%;
+    margin:0 auto;
+    border-radius:15px;
+}
+
 .message-input {
     position: absolute;
     height: 20%;
