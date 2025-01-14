@@ -52,6 +52,11 @@ div {outline: black 1px solid;}
     border-radius:15px;
 }
 
+.message img {
+    border-radius:100%;
+    height:64px;
+}
+
 .message-input {
     position: absolute;
     height: 20%;
