@@ -62,6 +62,10 @@ div {outline: black 1px solid;}
     height:32px;
 }
 
+.message h2 {
+    font-size:18px;
+}
+
 .message-input {
     position: absolute;
     height: 20%;
