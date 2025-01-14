@@ -48,8 +48,12 @@ div {outline: black 1px solid;}
     height:fit-content;
     background:white;
     width:90%;
-    margin:0 auto;
+    margin-top:15px;
+    margin-bottom:15px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius:15px;
+    padding:20px;
 }
 
 .message img {
