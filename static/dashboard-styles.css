@@ -18,6 +18,9 @@ body {
     align-items: center;
 }
 
+/* just for design */
+div {outline: black 1px solid;}
+
 .top-bar {
     height:6%;
     width:100%;
@@ -31,6 +34,15 @@ body {
     width:70%;
     height:94%;
     left:20%;
+}
+
+.message-history {
+    position:absolute;
+    border-radius: 10px;
+    height:70%;
+    width:90%;
+    left:5%;
+    top:10%;
 }
 
 .user-info {
@@ -124,4 +136,26 @@ color:white;
 
 button:hover {
     transform: scale(1.05);
+}
+
+/* Skeleton Keyframes for Animation */
+@keyframes skeleton-loading {
+    0% {
+        background-color: #eeeeee;
+    }
+    50% {
+        background-color: #dddddd;
+    }
+    100% {
+        background-color: #eeeeee;
+    }
+}
+
+/* Skeleton Class */
+.skeleton {
+    background-color: #eeeeee;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite;
+    color: transparent; /* Hide the original content */
+    pointer-events: none; /* Prevent interaction */
 }
