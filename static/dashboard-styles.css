@@ -8,6 +8,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow:hidden;
 }
 
 .ui-segment {
@@ -42,6 +43,7 @@ div {outline: black 1px solid;}
     width:100%;
     left:0%;
     top:0%;
+    overflow-y:scroll;
 }
 
 .message {
