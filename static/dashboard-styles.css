@@ -73,6 +73,10 @@ body {
     font-weight: bold;
 }
 
+h2 {
+    font-size:18px;
+    font-weight: bold;
+}
 
 /* message content*/
 
@@ -146,14 +150,27 @@ body {
     width:100%;
 }
 
-.user-selection-pane #search-results {
+#friends-list {
     width:90%;
-    height:90%;
+    height:49%;
     max-width:90%;
-    max-height:90%;
+    max-height:49%;
     position:absolute;
     left:5%;
-    bottom: 1%;
+    bottom:1%;
+    background-color:lightgray;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.user-selection-pane #search-results {
+    width:90%;
+    height:41%;
+    max-width:90%;
+    max-height:41%;
+    position:absolute;
+    left:5%;
+    bottom: 50%;
     background-color:lightgray;
     border-radius: 10px;
     overflow:auto;
