@@ -29,7 +29,7 @@ def js_create_account(username, password):
 	accounts[username]['password_hashed'] = hashed.decode('utf-8')
 	ids = []
 	for account in accounts:
-		ids.append(accounts[account]['id'])
+		ids.append(accounts[account].get('id'))
 	accounts[username]['id'] = generate_user_id(ids)
 	write_accounts(accounts)
 	return jsonify({'message': 'Account created successfully'})
