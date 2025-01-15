@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="user-selection-pane ui-segment">
-        <div class="input-container-search"><input type="text" placeholder="Enter a username to find a friend"></div>
+        <div class="input-container-search"><input type="text" placeholder="Enter a username to find a friend" id="search-input"></div>
         <div id="search-results">
             <h2>  Results: </h2>
             <div class="search-result">
@@ -50,6 +50,7 @@
     </div>
 
     <script>
+        // TODO: Update this function.
         async function getUserData() {
 		const username = document.getElementById('username').value
 		const password = document.getElementById('password').value
@@ -70,7 +71,7 @@
             	alert('Provided username/password does not match.');
             */
            // needs to be updated for the new function
-	}
+	    }
     
     	function getCookie(name) {
         	const nameEQ = name + "=";
@@ -83,11 +84,30 @@
         	return null;
         }
 
+        function searchUsers(user) {
+            console.log('users searched' + user)
+        }
+
         if (getCookie("username")) {
             void(0);
         } else {
             window.location.href = `/login`
         }
+
+        const searchInput = document.getElementById("search-input");
+        let typingTimer;
+        const doneTypingInterval = 1000;
+
+        function doneTyping() {
+            if (searchInput.value.trim() !== '') {
+                searchUsers(searchInput.value);
+            }
+        }
+
+        inputField.addEventListener('input', () => {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        });
     </script>
 </body>
 </html>
