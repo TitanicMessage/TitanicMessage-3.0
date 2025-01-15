@@ -88,6 +88,7 @@
         async function searchUsers(user) {
             const response = await fetch(`/api/search_users/?limit=20&q=${user}`);
             const data = await response.json();
+            document.getElementById("search-results").innerHTML = '<h2>  Results: </h2>'
             data.results.forEach(function(user) {
                 let divData = document.createElement('div');
                 divData.className = 'search-result';
