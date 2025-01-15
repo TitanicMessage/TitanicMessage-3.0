@@ -190,12 +190,12 @@ h2 {
 
 .user-selection-pane #search-results {
     width:90%;
-    height:41%;
+    height:45%;
     max-width:90%;
-    max-height:41%;
+    max-height:45%;
     position:absolute;
     left:5%;
-    bottom: 55%;
+    bottom: 46%;
     background-color:lightgray;
     border-radius: 10px;
     overflow:auto;
