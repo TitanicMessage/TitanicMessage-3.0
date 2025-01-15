@@ -60,14 +60,49 @@
     <script>
         let userData
         async function getUserData() {
-            const username = getCookie("username");
-            const password = getCookie("password");
             const userID = await fetch(`/api/get_user_id/${username}`);
             const userIDData = await userID.json();
             const response = await fetch(`/api/users/${userIDData.id}`);
             const data = await response.json();
             userData = data;
-            pending = userData.pending;
+            updateFriendsList();
+            updatePendingList();
+        }
+
+        async function getAnotherUserData(otherUserId) {
+            const response = await fetch(`/api/users/${otherUserId}`);
+            const data = await response.json();
+            return data
+        }
+
+        async function updateFriendsList() {
+            const friendsList = document.getElementById("friends-list");
+            friendsList.innerHTML = `<h2>  Friends: </h2>`
+            userData.friends.forEach(function(userId) {
+                friendData = getAnotherUserData(userId)
+                let divData = document.createElement("div");
+                divData.className = 'friend-item';
+                divData.innerHTML = `
+                    <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
+                    <h2>${friendData.username}</h2>
+                `;
+                friendsList.appendChild(divData);
+            });
+        }
+
+        async function updatePendingList() {
+            const pendingList = document.getElementById("pending-list");
+            pendingList.innerHTML = `<h2>  Incoming Friend Requests:  </h2>`
+            userData.pending.forEach(function(userId) {
+                pendingData = getAnotherUserData(userId)
+                let divData = document.createElement("div");
+                divData.className = 'pending-item';
+                divData.innerHTML = `
+                    <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
+                    <h2>${pendingData.username}</h2>
+                `;
+                pendingList.appendChild(divData);
+            });
         }
     
         function getCookie(name) {
@@ -136,6 +171,7 @@
         }
 
         authenticate();
+        getUserData();
 
         const searchInput = document.getElementById("search-input");
         let typingTimer;
