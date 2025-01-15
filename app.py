@@ -141,7 +141,7 @@ def send_friend_request(username, password, recipient_id):
 		return jsonify({"message":"request sent"})
 
 @app.route('/api/users/<id>/send_request', methods=['POST'])
-def send_request_friend_api():
+def send_request_friend_api(id):
 	b = request.get_json(force=True)
 	return send_friend_request(b["username"], b["password"], b["recipient_id"])
 
