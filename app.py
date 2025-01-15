@@ -143,7 +143,7 @@ def send_friend_request(username, password, recipient_id):
 @app.route('/api/users/<id>/send_request', methods=['POST'])
 def send_request_friend_api(id):
 	b = request.get_json(force=True)
-	return send_friend_request(b["username"], b["password"], b["recipient_id"])
+	return send_friend_request(b["username"], b["password"], id)
 
 @app.route('/api/get_user_id/<username>')
 def get_user_by_id_api(username):
