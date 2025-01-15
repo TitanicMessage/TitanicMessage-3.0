@@ -141,6 +141,35 @@ def send_friend_request(username, password, recipient_id):
 		write_accounts(accounts)
 		return jsonify({"message":"request sent"})
 
+def accept_friend_request(username, password, friender_id):
+	if not authenticate(username, password):
+		return jsonify({"error":"unauthenticated"}), 401
+	else:
+		accounts = load_accounts()
+		accounts[username]["pending"] = [item for item in accounts[username]["pending"] if item != friender_id]
+		accounts[username]["friends"].append(friender_id)
+		write_accounts(accounts)
+		return jsonify({"message": "OK"})
+
+def reject_friend_request(username, password, friender_id):
+	if not authenticate(username, password):
+		return jsonify({"error": "unauthenticated"}), 401
+	else:
+		accounts = load_accounts()
+		accounts[username]["pending"] = [item for item in accounts[username]["pending"] if item != friender_id]
+		write_accounts(accounts)
+		return jsonify({"message": "OK"})
+
+@app.route('/api/users/<id>/accept_request', methods['POST'])
+def accept_friend_request_api(id):
+	b = request.get_json(force=True)
+	return accept_friend_request(b["username"], b["password"], id)
+
+@app.route('/api/users/<id>/reject_request', methods['POST'])
+def reject_friend_request_api(id):
+	b = request.get_json(force=True)
+	return reject_friend_request(b["username"], b["password"], id)
+
 @app.route('/api/users/<id>/send_request', methods=['POST'])
 def send_request_friend_api(id):
 	b = request.get_json(force=True)
