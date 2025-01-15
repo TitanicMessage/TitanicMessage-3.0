@@ -149,6 +149,8 @@
                 },
                 body: JSON.stringify({ username, password })
             });
+            updateFriendsList();
+            updatePendingList();
         }
 
         document.getElementById("search-results").innerHTML = '<h2>  Results: </h2>'
