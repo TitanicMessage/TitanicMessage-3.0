@@ -84,8 +84,6 @@
                 const friendData = await getAnotherUserData(userID);
                 let divData = document.createElement("div");
                 divData.className = 'friend-item';
-                console.log(friendData);
-                console.log(friendData.username)
                 divData.innerHTML = `
                     <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
                     <h2>${friendData.username}</h2>
@@ -98,7 +96,7 @@
             const pendingList = document.getElementById("pending-list");
             pendingList.innerHTML = `<h2>  Incoming Friend Requests:  </h2>`
             for (const userID of userData.pending) {
-                const pendingData = getAnotherUserData(userID);
+                const pendingData = await getAnotherUserData(userID);
                 let divData = document.createElement("div");
                 divData.className = 'pending-item';
                 divData.innerHTML = `
