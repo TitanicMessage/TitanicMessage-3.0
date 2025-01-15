@@ -84,6 +84,21 @@
         	return null;
         }
 
+        // in progress
+        async function addFriend(e) {
+            const username_to_send = e.parentElement.querySelector('h2').innerText;
+            const response = await fetch(`/api/get_user_id/${username_to_send}`);
+            const data = await response.json();
+            const userID_to_send = data.id;
+            const response2 = await fetch(`/api/users/${userID_to_send}/send_request`, {
+                method: 'POST',
+                headers: {
+                	'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+        }
+
         document.getElementById("search-results").innerHTML = '<h2>  Results: </h2>'
         async function searchUsers(user) {
             const response = await fetch(`/api/search_users/?limit=20&q=${user}`);
@@ -96,7 +111,7 @@
                     <div class="search-result">
                     <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
                     <h2>${user}</h2>
-                    <button>Add Friend</button>
+                    <button onclick="addFriend(this)">Add Friend</button>
                     </div>
                 `
                 document.getElementById("search-results").appendChild(divData)
