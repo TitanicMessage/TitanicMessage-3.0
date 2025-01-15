@@ -14,7 +14,6 @@ body {
 .ui-segment {
     outline: black 1px solid;
     background-color: #fff9;
-    backdrop-filter:blur(5000000px);
     justify-content: center;
     align-items: center;
 }
