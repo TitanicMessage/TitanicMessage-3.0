@@ -192,7 +192,7 @@ body {
     outline: green 2px solid;
     color: green;
     transition: 0.3s ease all;
-    width:min-content;
+    width:max-content;
     height:min-content;
 }
 
