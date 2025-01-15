@@ -76,6 +76,7 @@ body {
 h2 {
     font-size:18px;
     font-weight: bold;
+    margin-left:10px;
 }
 
 /* message content*/
@@ -161,6 +162,30 @@ h2 {
     background-color:lightgray;
     border-radius: 10px;
     overflow: auto;
+}
+
+.friend-item {
+    height:fit-content;
+    background: white;
+    width:90%;
+    margin: 15px auto;
+    border-radius: 15px;
+    padding:10px;
+    display:flex;
+    align-items: flex-start;
+}
+
+.friend-item img {
+    border-radius: 100%;
+    height:32px;
+    width:32px;
+    margin-right:10px;
+}
+
+.friend-item h2 {
+    font-size:18px;
+    margin:0;
+    font-weight: bold;
 }
 
 .user-selection-pane #search-results {
