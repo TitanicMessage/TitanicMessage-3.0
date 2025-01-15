@@ -31,6 +31,8 @@ def js_create_account(username, password):
 	for account in accounts:
 		ids.append(accounts[account].get('id'))
 	accounts[username]['id'] = generate_user_id(ids)
+	accounts[username]['friends'] = []
+	accoutns[username]['pending'] = []
 	write_accounts(accounts)
 	return jsonify({'message': 'Account created successfully'})
 
@@ -125,8 +127,24 @@ def get_user_data(id):
 		if accounts[account]['id'] == id:
 			them = accounts[account]
 			del them["password_hashed"]
+			them["username"] = get_username(id)
 			return jsonify(them)
 	return jsonify({"error":"user not found"}), 404
+
+def send_friend_request(username, password, recipient_id):
+	if not authenticate(username, password):
+		return jsonify({"error":"unauthenticated"}), 401
+	else:
+		recipient = get_username(recipient_id)
+		accounts = load_accounts()
+		accounts[recipient]["pending"].append(get_id(username))
+		return jsonify({"message":"request sent"})
+
+@app.route('/api/users/<id>/send_request', method=['POST'])
+def send_request_friend_api():
+	b = request.get_json(force=True)
+	return send_friend_request(b["username"], b["password"], b["recipient_id"])
+
 
 @app.route('/api/chats/<id>', methods=['POST'])
 def api_chat_id(id):
