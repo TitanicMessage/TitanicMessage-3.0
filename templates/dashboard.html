@@ -87,7 +87,15 @@
         async function searchUsers(user) {
             const response = await fetch(`/api/search_users/?limit=20&q=${user}`);
             const data = await response.json();
-            console.log(data.results)
+            data.results.forEach(function(user) {
+                console.log(`
+                <div class="search-result">
+                <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
+                <h2>${user}</h2>
+                <button>Add Friend</button>
+                </div>
+                `)
+            });
         }
 
         if (getCookie("username")) {
