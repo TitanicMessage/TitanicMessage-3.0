@@ -98,7 +98,7 @@
             const pendingList = document.getElementById("pending-list");
             pendingList.innerHTML = `<h2>  Incoming Friend Requests:  </h2>`
             for (const userID of userData.pending) {
-                const pendingData = getAnotherUserData(userId);
+                const pendingData = getAnotherUserData(userID);
                 let divData = document.createElement("div");
                 divData.className = 'pending-item';
                 divData.innerHTML = `
