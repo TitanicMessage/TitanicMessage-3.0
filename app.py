@@ -101,8 +101,10 @@ def generate_user_id(ids):
 
 def send_message(chat_id, author_id, content):
 	chat = get_chat(chat_id)
+	if chat == None:
+		return jsonify({"id":None})
 	if not author_id in get_participants(chat):
-		return None
+		return jsonify({"id":None})
 	messages = chat["messages"]
 	id = generate_id(messages)
 	messages.append({
@@ -112,10 +114,19 @@ def send_message(chat_id, author_id, content):
 	})
 	chat["messages"] = messages
 	write_chat(chat_id, chat)
-	return id
+	return jsonify({"id":id})
 
 def is_allowed(username, password, chat_id):
 	return authenticate(username, password) and get_id(username) in get_participants(get_chat(chat_id))
+
+def get_user_data(id):
+	accounts = load_accounts()
+	for account in accounts:
+		if accounts[account]['id'] == id:
+			them = accounts[account]
+			del them["password_hashed"]
+			return jsonify(them)
+	return jsonify({"error":"user not found"}), 404
 
 @app.route('/api/chats/<id>', methods=['POST'])
 def api_chat_id(id):
@@ -123,7 +134,7 @@ def api_chat_id(id):
 	if is_allowed(b['username'], b['password'], id):
 		return get_chat(id)
 	else:
-		return jsonify({"error":"unauthenticated"}), 403
+		return jsonify({"error":"unauthenticated"}), 401
 
 @app.route('/api/chats/<id>/post_message', methods=['POST'])
 def post_message_api(id):
@@ -131,7 +142,12 @@ def post_message_api(id):
 	if is_allowed(b['username'], b['password'], id):
 		return send_message(id, get_id(b['username']), b['content'])
 	else:
-		return jsonify({"error":"unauthenticated"}), 403
+		return jsonify({"error":"unauthenticated"}), 401
+
+@app.route('/api/users/<id>')
+def api_users(id):
+	return get_user_data(id)
+	
 
 @app.route('/')
 def index():
