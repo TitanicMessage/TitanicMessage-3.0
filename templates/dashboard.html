@@ -153,6 +153,22 @@
             clearTimeout(typingTimer);
             typingTimer = setTimeout(doneTyping, doneTypingInterval);
         });
+
+    async function acceptFriendRequest(userID, username, password) {
+        const response = await fetch(`/api/users/${userID}/accept_request`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (data.error) {
+            alert('Failed to accept friend request');
+        } else {
+            console.log('Friend request accepted');
+        }
+    }
     </script>
 </body>
 </html>
