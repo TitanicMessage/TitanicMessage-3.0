@@ -34,6 +34,14 @@
                 <button>Add Friend</button>
             </div>
         </div>
+        <div id="pending-list">
+            <h2>  Incoming Friend Requests:  </h2>
+            <div class="pending-item">
+                <img src="https://cdn.discordapp.com/avatars/1287361512171634720/89320c3fac06db7deccfa42078a0a20e.webp?size=128"></img>
+                <h2>Gamma</h2>
+                <button>Accept Request</button>
+            </div>
+        </div>
         <div id="friends-list">
             <h2>  Friends: </h2>
             <div class="friend-item">
@@ -50,23 +58,16 @@
     </div>
 
     <script>
+        let userData
         async function getUserData() {
             const username = getCookie("username");
             const password = getCookie("password");
             const userID = await fetch(`/api/get_user_id/${username}`);
             const userIDData = await userID.json();
-            const response = await fetch(`/api/users/${userIDData.id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await fetch(`/api/users/${userIDData.id}`);
             const data = await response.json();
-            if (data.error) {
-                alert('Failed to fetch user data');
-            } else {
-                console.log(data);
-            }
+            userData = data;
+            pending = userData.pending;
         }
     
         function getCookie(name) {

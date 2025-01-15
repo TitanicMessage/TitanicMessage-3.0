@@ -155,10 +155,9 @@ h2 {
     width:90%;
     height:44%;
     max-width:90%;
-    max-height:49%;
     position:absolute;
     left:5%;
-    bottom:1%;
+    bottom:22%;
     background-color:lightgray;
     border-radius: 10px;
     overflow: auto;
@@ -190,12 +189,12 @@ h2 {
 
 .user-selection-pane #search-results {
     width:90%;
-    height:45%;
+    height:25%;
     max-width:90%;
-    max-height:45%;
+    max-height:25%;
     position:absolute;
     left:5%;
-    bottom: 46%;
+    bottom: 67%;
     background-color:lightgray;
     border-radius: 10px;
     overflow:auto;
@@ -239,6 +238,60 @@ h2 {
 }
 
 .search-result button:hover {
+    background-color:green;
+    color:white;
+}
+
+#pending-list {
+    width:90%;
+    height:10%;
+    max-width:90%;
+    position:absolute;
+    left:5%;
+    bottom:1%;
+    background-color:lightgray;
+    border-radius:10px;
+    overflow:auto;
+}
+
+.pending-item {
+    height:fit-content;
+    background:white;
+    width:90%;
+    margin:15px auto;
+    border-radius:15px;
+    padding:10px;
+    display:flex;
+    align-items:flex-start;
+}
+
+.pending-item img {
+    border-radius:100%;
+    height:32px;
+    width:32px;
+    margin-right:10px;
+}
+
+.pending-item h2 {
+    font-size:18px;
+    margin:0;
+    font-weight: bold;
+}
+
+.pending-item button {
+    position:absolute;
+    right:5%;
+    border-radius:5px;
+    padding:3px;
+    background-color:white;
+    outline: green 2px solid;
+    color: green;
+    transition: 0.3s ease all;
+    width:max-content;
+    height:min-content;
+}
+
+.pending-item button:hover {
     background-color:green;
     color:white;
 }
