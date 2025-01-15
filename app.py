@@ -114,14 +114,24 @@ def send_message(chat_id, author_id, content):
 	write_chat(chat_id, chat)
 	return id
 
+def is_allowed(username, password, chat_id):
+	return authenticate(username, password) and get_id(username) in get_participants(get_chat(chat_id))
+
 @app.route('/api/chats/<id>', methods=['POST'])
 def api_chat_id(id):
 	b = request.get_json(force=True)
-	if authenticate(b['username'], b['password']) and get_id(b['username']) in get_participants(get_chat(id)):
+	if is_allowed(b['username'], b['password'], id):
 		return get_chat(id)
 	else:
-		return {"error":"unauthenticated"}, 403
+		return jsonify({"error":"unauthenticated"}), 403
 
+@app.route('/api/chats/<id>/post_message', methods=['POST'])
+def post_message_api(id):
+	b = request.get_json(force=True)
+	if is_allowed(b['username'], b['password'], id):
+		return send_message(id, get_id(b['username']), b['content'])
+	else:
+		return jsonify({"error":"unauthenticated"}), 403
 
 @app.route('/')
 def index():
