@@ -135,10 +135,11 @@ def send_friend_request(username, password, recipient_id):
 	if not authenticate(username, password):
 		return jsonify({"error":"unauthenticated"}), 401
 	else:
-		recipient = get_username(recipient_id)
-		accounts = load_accounts()
-		accounts[recipient]["pending"].append(get_id(username))
-		write_accounts(accounts)
+		if not get_id(username) == recipient_id or recipient_id in get_user_data(get_id(username))["friends"]:
+			recipient = get_username(recipient_id)
+			accounts = load_accounts()
+			accounts[recipient]["pending"].append(get_id(username))
+			write_accounts(accounts)
 		return jsonify({"message":"request sent"})
 
 def accept_friend_request(username, password, friender_id):
