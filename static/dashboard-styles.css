@@ -148,12 +148,12 @@ body {
 
 .user-selection-pane #search-results {
     width:90%;
-    height:86%;
+    height:90%;
     max-width:90%;
-    max-height:86%;
+    max-height:90%;
     position:absolute;
     left:5%;
-    bottom: 5%;
+    bottom: 1%;
     background-color:lightgray;
     border-radius: 10px;
     overflow:auto;
@@ -200,10 +200,6 @@ body {
     background-color:green;
     color:white;
 }
-
-
-
-
 
 .container {
     width: 100%;
