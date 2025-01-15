@@ -102,6 +102,7 @@
                 divData.innerHTML = `
                     <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
                     <h2>${pendingData.username}</h2>
+                    <button onclick="accept_friend(this)">Accept Request</button>
                 `;
                 pendingList.appendChild(divData);
             }
@@ -126,6 +127,22 @@
             const data = await response.json();
             const userID_to_send = data.id;
             const response2 = await fetch(`/api/users/${userID_to_send}/send_request`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+        }
+
+        async function accept_friend(e) {
+            const username = getCookie("username");
+            const password = getCookie("password");
+            const username_to_send = e.parentElement.querySelector('h2').innerText;
+            const response = await fetch(`/api/get_user_id/${username_to_send}`);
+            const data = await response.json();
+            const userID_to_send = data.id;
+            const response2 = await fetch(`/api/users/${userID_to_send}/accept_request`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
