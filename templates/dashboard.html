@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/dashboard-styles.css">
 </head>
 <body>
@@ -50,42 +50,39 @@
     </div>
 
     <script>
-        // TODO: Update this function.
         async function getUserData() {
-		const username = document.getElementById('username').value
-		const password = document.getElementById('password').value
-        	const response = await fetch('/api/data', {
-            	method: 'POST',
-            	headers: {
-                	'Content-Type': 'application/json'
-                },
-            	body: JSON.stringify({ username, password })
+            const username = getCookie("username");
+            const password = getCookie("password");
+            const userID = await fetch(`/api/get_user_id/${username}`);
+            const userIDData = await userID.json();
+            const response = await fetch(`/api/users/${userIDData.id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
-        	const data = await response.json();
-        	/*
-            if (data.message === 'Login successful') {
-            	document.cookie = `username=${username}; path=/`;
-                document.cookie = `password=${password}; path=/`;
-            	window.location.href = `/dashboard`;
+            const data = await response.json();
+            if (data.error) {
+                alert('Failed to fetch user data');
             } else {
-            	alert('Provided username/password does not match.');
-            */
-           // needs to be updated for the new function
-	    }
-    
-    	function getCookie(name) {
-        	const nameEQ = name + "=";
-        	const ca = document.cookie.split(';');
-        	for(let i = 0; i < ca.length; i++) {
-            	let c = ca[i];
-            	while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            	if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                console.log(data);
             }
-        	return null;
+        }
+    
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
 
-        // in progress
         async function addFriend(e) {
+            const username = getCookie("username");
+            const password = getCookie("password");
             const username_to_send = e.parentElement.querySelector('h2').innerText;
             const response = await fetch(`/api/get_user_id/${username_to_send}`);
             const data = await response.json();
@@ -93,9 +90,9 @@
             const response2 = await fetch(`/api/users/${userID_to_send}/send_request`, {
                 method: 'POST',
                 headers: {
-                	'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({})
+                body: JSON.stringify({ username, password })
             });
         }
 
@@ -127,7 +124,7 @@
             const response = await fetch(`/api/login`, {
                 method: 'POST',
                 headers: {
-                	'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username, password })
             })
@@ -154,21 +151,21 @@
             typingTimer = setTimeout(doneTyping, doneTypingInterval);
         });
 
-    async function acceptFriendRequest(userID, username, password) {
-        const response = await fetch(`/api/users/${userID}/accept_request`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-        const data = await response.json();
-        if (data.error) {
-            alert('Failed to accept friend request');
-        } else {
-            console.log('Friend request accepted');
+        async function acceptFriendRequest(userID, username, password) {
+            const response = await fetch(`/api/users/${userID}/accept_request`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await response.json();
+            if (data.error) {
+                alert('Failed to accept friend request');
+            } else {
+                console.log('Friend request accepted');
+            }
         }
-    }
     </script>
 </body>
 </html>
