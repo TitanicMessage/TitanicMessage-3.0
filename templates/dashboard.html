@@ -118,11 +118,26 @@
             });
         }
 
-        if (getCookie("username")) {
-            void(0);
-        } else {
-            window.location.href = `/login`
+        async function authenticate() {
+            const username = getCookie("username");
+            const password = getCookie("password");
+            if (username === null || password === null) {
+                window.location.href = `/login`;
+            }
+            const response = await fetch(`/api/login`, {
+                method: 'POST',
+                headers: {
+                	'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            const data = await response.json();
+            if (data.message === 'Account not found' || data.message === 'Invalid password') {
+                window.location.href = `/login`;
+            }
         }
+
+        authenticate();
 
         const searchInput = document.getElementById("search-input");
         let typingTimer;
