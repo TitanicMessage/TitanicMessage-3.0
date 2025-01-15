@@ -160,12 +160,12 @@ def reject_friend_request(username, password, friender_id):
 		write_accounts(accounts)
 		return jsonify({"message": "OK"})
 
-@app.route('/api/users/<id>/accept_request', methods['POST'])
+@app.route('/api/users/<id>/accept_request', methods=['POST'])
 def accept_friend_request_api(id):
 	b = request.get_json(force=True)
 	return accept_friend_request(b["username"], b["password"], id)
 
-@app.route('/api/users/<id>/reject_request', methods['POST'])
+@app.route('/api/users/<id>/reject_request', methods=['POST'])
 def reject_friend_request_api(id):
 	b = request.get_json(force=True)
 	return reject_friend_request(b["username"], b["password"], id)
