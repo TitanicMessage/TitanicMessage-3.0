@@ -150,8 +150,7 @@
                 },
                 body: JSON.stringify({ username, password })
             });
-            updateFriendsList();
-            updatePendingList();
+            getUserData();
         }
 
         async function reject_friend(e) {
@@ -168,8 +167,7 @@
                 },
                 body: JSON.stringify({ username, password })
             });
-            updateFriendsList();
-            updatePendingList();
+            getUserData();
         }
 
         document.getElementById("search-results").innerHTML = '<h2>  Results: </h2>'
@@ -242,6 +240,7 @@
             } else {
                 console.log('Friend request accepted');
             }
+            getUserData();
         }
     </script>
 </body>
