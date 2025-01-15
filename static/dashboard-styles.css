@@ -183,6 +183,22 @@ body {
     font-weight:bold;
 }
 
+.search-result button {
+    position:absolute;
+    right:5%;
+    border-radius:5px;
+    padding:3px;
+    background-color:white;
+    outline: green 2px solid;
+    color: green;
+    transition: 0.3s ease all;
+}
+
+.search-result button:hover {
+    background-color:green;
+    color:white;
+}
+
 
 
 
