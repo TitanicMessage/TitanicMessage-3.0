@@ -46,7 +46,7 @@ def get_username(id):
 def get_id(username):
 	accounts = load_accounts()
 	for account in accounts:
-		if accounts[account]['username'] == username:
+		if account == username:
 			return accounts[account]['id']
 	return None
 
