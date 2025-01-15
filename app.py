@@ -145,6 +145,10 @@ def send_request_friend_api():
 	b = request.get_json(force=True)
 	return send_friend_request(b["username"], b["password"], b["recipient_id"])
 
+@app.route('/api/get_user_id/<username>')
+def get_user_by_id_api(username):
+	return jsonify({"id":get_id(username)})
+
 
 @app.route('/api/chats/<id>', methods=['POST'])
 def api_chat_id(id):
