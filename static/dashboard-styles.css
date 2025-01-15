@@ -121,8 +121,9 @@ body {
 
 .user-selection-pane input {
     margin:5px;
-    width:90%;
-    height:5%;
+    max-width:90%;
+    max-height:5%;
+    padding:3px;
     background-color:lightgray;
     color:black;
     font-size:large;
@@ -135,13 +136,14 @@ body {
 }
 
 .user-selection-pane #search-results {
-    width:90%;
-    height:86%;
+    max-width:90%;
+    max-height:86%;
     position:absolute;
     left:5%;
     bottom: 5%;
     background-color:lightgray;
     border-radius: 10px;
+    overflow:auto;
 }
 
 .container {
