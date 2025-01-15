@@ -138,6 +138,7 @@ def send_friend_request(username, password, recipient_id):
 		recipient = get_username(recipient_id)
 		accounts = load_accounts()
 		accounts[recipient]["pending"].append(get_id(username))
+		write_accounts(accounts)
 		return jsonify({"message":"request sent"})
 
 @app.route('/api/users/<id>/send_request', methods=['POST'])
