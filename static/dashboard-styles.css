@@ -281,14 +281,14 @@ h2 {
 .pending-item button {
     position:absolute;
     right:5%;
-    border-radius:5px;
+    border-radius:100%;
     padding:3px;
     background-color:white;
     outline: green 2px solid;
     color: green;
     transition: 0.3s ease all;
-    width:max-content;
-    height:min-content;
+    width:24px;
+    height:24px;
 }
 
 .pending-item button:hover {
