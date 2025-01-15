@@ -120,9 +120,12 @@ body {
 }
 
 .user-selection-pane input {
+    margin:5px;
     width:90%;
     height:5%;
     background-color:lightgray;
+    color:black;
+    font-size:large;
     border-radius:10px;
     border:0;
     outline:0;
