@@ -181,6 +181,20 @@ h2 {
     margin-right:10px;
 }
 
+.breakup {
+    border-radius:0;
+    height:24px;
+    width:24px;
+    margin:0;
+    position:absolute;
+    right:5%;
+    transition: 0.3s ease all;
+}
+
+.breakup:hover {
+    transform:scale(1.05);
+}
+
 .friend-item h2 {
     font-size:18px;
     margin:0;
