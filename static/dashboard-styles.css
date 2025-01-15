@@ -121,22 +121,22 @@ body {
 
 .user-selection-pane input {
     width:90%;
-    height:10%;
+    height:5%;
     background-color:lightgray;
     border-radius:10px;
     border:0;
     outline:0;
     position:absolute;
-    top: 5%;
+    top: 2%;
     left:5%;
 }
 
 .user-selection-pane #search-results {
     width:90%;
-    height:75%;
+    height:86%;
     position:absolute;
     left:5%;
-    top: 20%;
+    bottom: 5%;
     background-color:lightgray;
     border-radius: 10px;
 }
