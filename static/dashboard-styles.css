@@ -136,7 +136,16 @@ body {
     left:5%;
 }
 
-.input-container-search input {}
+.input-container-search input {
+    background-color:lightgray;
+    color:black;
+    font-size:large;
+    border-radius:10px;
+    border:0;
+    outline:0;
+    height:100%;
+    width:100%;
+}
 
 .user-selection-pane #search-results {
     width:90%;
