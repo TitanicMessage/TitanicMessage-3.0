@@ -278,7 +278,7 @@ h2 {
     font-weight: bold;
 }
 
-.pending-item button {
+.pending-item .checkmark {
     position:absolute;
     right:5%;
     border-radius:100%;
@@ -291,12 +291,36 @@ h2 {
     height:24px;
 }
 
-.pending-item button:hover {
+.pending-item .checkmark:hover {
     background-color:green;
     color:white;
 }
 
 .pending-item .checkmark-accept {
+    background: rgba(0,0,0,0);
+    height:24px;
+    width:24px;
+}
+
+.pending-item .crossmark {
+    position:absolute;
+    right:5%;
+    border-radius:100%;
+    padding:0;
+    background-color:white;
+    outline: rgb(255, 0, 0) 2px solid;
+    color: rgb(255, 0, 0);
+    transition: 0.3s ease all;
+    width:24px;
+    height:24px;
+}
+
+.pending-item .crossmark:hover {
+    background-color:rgb(255, 0, 0);
+    color:white;
+}
+
+.pending-item .crossmark-reject {
     background: rgba(0,0,0,0);
     height:24px;
     width:24px;
