@@ -32,7 +32,7 @@ def js_create_account(username, password):
 		ids.append(accounts[account].get('id'))
 	accounts[username]['id'] = generate_user_id(ids)
 	accounts[username]['friends'] = []
-	accoutns[username]['pending'] = []
+	accounts[username]['pending'] = []
 	write_accounts(accounts)
 	return jsonify({'message': 'Account created successfully'})
 
