@@ -119,8 +119,7 @@ body {
     bottom:0;
 }
 
-.user-selection-pane input {
-    margin:5px;
+.input-container-search {
     width:90%;
     height:5%;
     max-width:90%;
@@ -136,6 +135,8 @@ body {
     top: 2%;
     left:5%;
 }
+
+.input-container-search input {}
 
 .user-selection-pane #search-results {
     width:90%;
