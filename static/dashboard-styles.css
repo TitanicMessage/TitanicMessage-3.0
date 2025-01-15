@@ -47,7 +47,7 @@ body {
 .message {
     height:fit-content;
     background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(224,224,224,1) 59%, rgba(211,211,211,1) 100%);
+    background: linear-gradient(90deg, rgb(209, 209, 209) 0%, rgba(224,224,224,1) 59%, rgba(211,211,211,1) 100%);
     width:90%;
     margin-top:15px;
     margin-bottom:15px;
@@ -117,6 +117,28 @@ body {
     height:94%;
     width:20%;
     bottom:0;
+}
+
+.user-selection-pane input {
+    width:90%;
+    height:10%;
+    background-color:lightgray;
+    border-radius:10px;
+    border:0;
+    outline:0;
+    position:absolute;
+    top: 5%;
+    left:5%;
+}
+
+.user-selection-pane #search-results {
+    width:90%;
+    height:75%;
+    position:absolute;
+    left:5%;
+    top: 20%;
+    background-color:lightgray;
+    border-radius: 10px;
 }
 
 .container {
