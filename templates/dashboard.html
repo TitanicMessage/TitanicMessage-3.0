@@ -60,6 +60,7 @@
     <script>
         let userData
         async function getUserData() {
+            const username = getCookie("username");
             const userID = await fetch(`/api/get_user_id/${username}`);
             const userIDData = await userID.json();
             const response = await fetch(`/api/users/${userIDData.id}`);
