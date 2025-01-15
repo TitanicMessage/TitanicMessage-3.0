@@ -62,7 +62,7 @@
             	if (response.ok) {
                 	if (data.message === 'Username already exists') {
                     	alert('Username already in use. Please choose another username.');
-                    } else if (data.message === 'User registered successfully') {
+                    } else if (data.message === 'Account created successfully') {
                     	alert('You have been registered successfully. Taking you to login...');
                     	window.location.href = `/login`;
                     } else {
