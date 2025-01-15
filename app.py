@@ -199,6 +199,23 @@ def post_message_api(id):
 @app.route('/api/users/<id>')
 def api_users(id):
 	return get_user_data(id)
+
+@app.route('/api/search_users/')
+def search_users_api():
+	try:
+		query = request.args.get('q').lower()
+		limit = min(20, int(request.args.get('limit')))
+	except:
+		return jsonify({'error':'limit must be an integer'}), 400
+	if not query or not limit:
+		return jsonify({'error':'missing query or limit'}), 400
+	accounts = load_accounts()
+	results = []
+	for account in accounts:
+		if query in str(account):
+			results.append(str(account))
+	results = results[:limit]
+	return jsonify({'results':results})
 	
 
 @app.route('/')
