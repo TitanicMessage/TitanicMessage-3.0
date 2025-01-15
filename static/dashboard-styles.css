@@ -19,9 +19,6 @@ body {
     align-items: center;
 }
 
-/* just for design */
-div {outline: black 1px solid;}
-
 .top-bar {
     height:6%;
     width:100%;
