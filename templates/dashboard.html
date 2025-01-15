@@ -80,9 +80,11 @@
             const friendsList = document.getElementById("friends-list");
             friendsList.innerHTML = `<h2>  Friends: </h2>`
             userData.friends.forEach(function(userId) {
-                friendData = getAnotherUserData(userId)
+                friendData = getAnotherUserData(userId);
                 let divData = document.createElement("div");
                 divData.className = 'friend-item';
+                console.log(friendData);
+                console.log(friendData.username)
                 divData.innerHTML = `
                     <img src="https://cdn.discordapp.com/icons/1294277640722714725/1945c4245eab3e9c7dbbe98165beacfd.webp?size=96"></img>
                     <h2>${friendData.username}</h2>
@@ -95,7 +97,7 @@
             const pendingList = document.getElementById("pending-list");
             pendingList.innerHTML = `<h2>  Incoming Friend Requests:  </h2>`
             userData.pending.forEach(function(userId) {
-                pendingData = getAnotherUserData(userId)
+                pendingData = getAnotherUserData(userId);
                 let divData = document.createElement("div");
                 divData.className = 'pending-item';
                 divData.innerHTML = `
