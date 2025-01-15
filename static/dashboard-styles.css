@@ -121,6 +121,8 @@ body {
 
 .user-selection-pane input {
     margin:5px;
+    width:90%;
+    height:5%;
     max-width:90%;
     max-height:5%;
     padding:3px;
@@ -136,6 +138,8 @@ body {
 }
 
 .user-selection-pane #search-results {
+    width:90%;
+    height:86%;
     max-width:90%;
     max-height:86%;
     position:absolute;
